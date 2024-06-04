@@ -1,4 +1,4 @@
-package br.com.insight.desafio.modelo;
+package br.com.insight.desafio.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,7 +12,7 @@ import lombok.Setter;
 @Table(name = "fornecedores")
 @Getter
 @Setter
-public class FornecedorModelo {
+public class FornecedorModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
