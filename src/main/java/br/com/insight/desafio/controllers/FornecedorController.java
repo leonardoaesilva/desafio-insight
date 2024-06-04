@@ -1,11 +1,11 @@
-package br.com.insight.desafio.controller;
+package br.com.insight.desafio.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.insight.desafio.model.FornecedorModel;
-import br.com.insight.desafio.service.FornecedorService;
+import br.com.insight.desafio.models.FornecedorModel;
+import br.com.insight.desafio.services.FornecedorService;
 
 @RestController
 public class FornecedorController {

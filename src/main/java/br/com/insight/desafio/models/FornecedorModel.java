@@ -1,4 +1,4 @@
-package br.com.insight.desafio.model;
+package br.com.insight.desafio.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
