@@ -11,10 +11,10 @@ import br.com.insight.desafio.repositories.FornecedorRepository;
 @Service
 public class FornecedorService {
     @Autowired
-    private FornecedorRepository fr;
+    private FornecedorRepository fornecedorRepo;
 
     public Iterable<FornecedorModel> listarTodos() {
-        return fr.findAll();
+        return fornecedorRepo.findAll();
     }
 
     public ResponseEntity<?> cadastrarFornecedor(FornecedorModel fornecedorNovo) {
@@ -26,6 +26,12 @@ public class FornecedorService {
             return new ResponseEntity<String>(resp, HttpStatus.BAD_REQUEST);
         }
         
-        return new ResponseEntity<FornecedorModel>(fr.save(fornecedorNovo), HttpStatus.CREATED);
+        return new ResponseEntity<FornecedorModel>(fornecedorRepo.save(fornecedorNovo), HttpStatus.CREATED);
+    }
+
+    public ResponseEntity<String> removerFornecedor(Long codigoInterno) {
+        fornecedorRepo.deleteById(codigoInterno);
+        String resp = "Fornecedor excluído com sucesso!";
+        return new ResponseEntity<String>(resp, HttpStatus.OK);
     }
 }

@@ -2,7 +2,9 @@ package br.com.insight.desafio.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.insight.desafio.models.FornecedorModel;
@@ -24,6 +26,11 @@ public class FornecedorController {
     @PostMapping("/create")
     public ResponseEntity<?> cadastrar(@RequestBody FornecedorModel fornecedorNovo) {
         return fs.cadastrarFornecedor(fornecedorNovo);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> remover(@PathVariable Long id) {
+        return fs.removerFornecedor(id);
     }
     
 }
