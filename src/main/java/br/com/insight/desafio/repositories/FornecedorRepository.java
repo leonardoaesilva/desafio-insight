@@ -6,6 +6,4 @@ import org.springframework.stereotype.Repository;
 import br.com.insight.desafio.models.FornecedorModel;
 
 @Repository
-public interface FornecedorRepository extends CrudRepository<FornecedorModel, Long>{
-    
-}
+public interface FornecedorRepository extends CrudRepository<FornecedorModel, Long>{}

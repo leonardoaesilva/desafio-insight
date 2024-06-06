@@ -16,21 +16,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 public class FornecedorController {
     @Autowired
-    private FornecedorService fs;
+    private FornecedorService fornecedorService;
 
     @GetMapping("/")
     public Iterable<FornecedorModel> listar() {
-        return fs.listarTodos();
+        return fornecedorService.listarTodos();
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> cadastrar(@RequestBody FornecedorModel fornecedorNovo) {
-        return fs.cadastrarFornecedor(fornecedorNovo);
+    public ResponseEntity<?> cadastrar(@RequestBody FornecedorModel novoFornecedor) {
+        return fornecedorService.cadastrarFornecedor(novoFornecedor);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> remover(@PathVariable Long id) {
-        return fs.removerFornecedor(id);
+    public ResponseEntity<String> remover(@PathVariable(value = "id") Long id) {
+        return fornecedorService.removerFornecedor(id);
     }
     
 }

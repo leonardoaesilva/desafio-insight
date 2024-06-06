@@ -15,7 +15,7 @@ import lombok.Setter;
 public class FornecedorModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long codigoFornecedor;
     private String cnpj;
-    private String nomeFantasia;
+    private String razaoSocial;
 }
