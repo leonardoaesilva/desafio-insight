@@ -19,30 +19,30 @@ public class FornecedorService {
         return fornecedorRepository.findAll();
     }
 
-    public ResponseEntity<Object> cadastrarFornecedor(FornecedorModel fornecedorNovo) {
-        if (fornecedorNovo.getCnpj().equals("")) {
-            String resp = "CNPJ não pode ficar em branco.";
+    public ResponseEntity<Object> cadastrarFornecedor(FornecedorModel novoFornecedor) {
+        if (novoFornecedor.getCnpj().equals("")) {
+            String resp = "CNPJ é um campo de preenchimento obrigatório.";
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resp);
-        } else if (fornecedorNovo.getRazaoSocial().equals("")) {
-            String resp = "Nome Fantasia não pode ficar em branco.";
+        } else if (novoFornecedor.getRazaoSocial().equals("")) {
+            String resp = "Nome/Razão Social é um campo de preenchimento obrigatório.";
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resp);
         }
         
-        return ResponseEntity.status(HttpStatus.CREATED).body(fornecedorRepository.save(fornecedorNovo));
+        return ResponseEntity.status(HttpStatus.CREATED).body(fornecedorRepository.save(novoFornecedor));
     }
 
-    public ResponseEntity<String> removerFornecedor(Long codigoInterno) {
+    public ResponseEntity<String> removerFornecedor(Long codigoFornecedor) {
+        Optional<FornecedorModel> f = fornecedorRepository.findById(codigoFornecedor);
         String resp = "";
-        Optional<FornecedorModel> f = fornecedorRepository.findById(codigoInterno);
 
         if (f.isEmpty()) {
             resp = "Fornecedor não encontrado! Verifique o código novamente.";
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(resp);
         }
 
-        fornecedorRepository.deleteById(codigoInterno);
+        fornecedorRepository.deleteById(codigoFornecedor);
         resp = "Fornecedor excluído com sucesso!";
-        
+
         return ResponseEntity.status(HttpStatus.OK).body(resp);
     }
 }

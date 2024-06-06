@@ -12,7 +12,6 @@ import br.com.insight.desafio.services.FornecedorService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
 @RestController
 public class FornecedorController {
     @Autowired
@@ -24,7 +23,7 @@ public class FornecedorController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> cadastrar(@RequestBody FornecedorModel novoFornecedor) {
+    public ResponseEntity<Object> cadastrar(@RequestBody FornecedorModel novoFornecedor) {
         return fornecedorService.cadastrarFornecedor(novoFornecedor);
     }
 
