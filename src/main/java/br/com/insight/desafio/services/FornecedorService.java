@@ -19,6 +19,18 @@ public class FornecedorService {
         return fornecedorRepository.findAll();
     }
 
+    public ResponseEntity<Object> cadastrarFornecedor(FornecedorModel novoFornecedor) {
+        if (novoFornecedor.getCnpj().equals("")) {
+            String resp = "CNPJ é um campo de preenchimento obrigatório.";
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resp);
+        } else if (novoFornecedor.getRazaoSocial().equals("")) {
+            String resp = "Nome/Razão Social é um campo de preenchimento obrigatório.";
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resp);
+        }
+        
+        return ResponseEntity.status(HttpStatus.CREATED).body(fornecedorRepository.save(novoFornecedor));
+    }
+    
     public ResponseEntity<Object> listarUm(Long codigoFornecedor) {
         Optional<FornecedorModel> f = fornecedorRepository.findById(codigoFornecedor);
         String resp = "";
@@ -31,16 +43,18 @@ public class FornecedorService {
         return ResponseEntity.status(HttpStatus.OK).body(f.get());
     }
 
-    public ResponseEntity<Object> cadastrarFornecedor(FornecedorModel novoFornecedor) {
-        if (novoFornecedor.getCnpj().equals("")) {
-            String resp = "CNPJ é um campo de preenchimento obrigatório.";
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resp);
-        } else if (novoFornecedor.getRazaoSocial().equals("")) {
-            String resp = "Nome/Razão Social é um campo de preenchimento obrigatório.";
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resp);
+    public ResponseEntity<Object> atualizarDadosFornecedor(Long codigoFornecedor, FornecedorModel fornecedor) {
+        Optional<FornecedorModel> f = fornecedorRepository.findById(codigoFornecedor);
+        String resp = "";
+
+        if (f.isEmpty()) {
+            resp = "Fornecedor não encontrado. Verifique o código informado e tente novamente.";
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(resp);
         }
-        
-        return ResponseEntity.status(HttpStatus.CREATED).body(fornecedorRepository.save(novoFornecedor));
+
+        fornecedor = f.get();
+
+        return ResponseEntity.status(HttpStatus.OK).body(fornecedorRepository.save(fornecedor));
     }
 
     public ResponseEntity<String> removerFornecedor(Long codigoFornecedor) {

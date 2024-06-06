@@ -11,6 +11,8 @@ import br.com.insight.desafio.models.FornecedorModel;
 import br.com.insight.desafio.services.FornecedorService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 @RestController
 public class FornecedorController {
@@ -22,14 +24,19 @@ public class FornecedorController {
         return fornecedorService.listarTodos();
     }
 
+    @PostMapping("/create")
+    public ResponseEntity<Object> cadastrar(@RequestBody FornecedorModel novoFornecedor) {
+        return fornecedorService.cadastrarFornecedor(novoFornecedor);
+    }
+
     @GetMapping("/read/{codigoFornecedor}")
     public ResponseEntity<Object> buscar(@PathVariable(value = "codigoFornecedor") Long codigoFornecedor) {
         return fornecedorService.listarUm(codigoFornecedor);
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<Object> cadastrar(@RequestBody FornecedorModel novoFornecedor) {
-        return fornecedorService.cadastrarFornecedor(novoFornecedor);
+    @PutMapping("/update/{codigoFornecedor}")
+    public ResponseEntity<Object> atualizar(@PathVariable(value = "codigoFornecedor") Long codigoFornecedor, @RequestBody FornecedorModel fornecedor) {
+        return fornecedorService.atualizarDadosFornecedor(codigoFornecedor, fornecedor);
     }
 
     @DeleteMapping("/delete/{codigoFornecedor}")
