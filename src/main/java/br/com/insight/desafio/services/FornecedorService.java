@@ -19,6 +19,18 @@ public class FornecedorService {
         return fornecedorRepository.findAll();
     }
 
+    public ResponseEntity<Object> listarUm(Long codigoFornecedor) {
+        Optional<FornecedorModel> f = fornecedorRepository.findById(codigoFornecedor);
+        String resp = "";
+
+        if (f.isEmpty()) {
+            resp = "Fornecedor não encontrado. Verifique o código informado e tente novamente.";
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(resp);
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(f.get());
+    }
+
     public ResponseEntity<Object> cadastrarFornecedor(FornecedorModel novoFornecedor) {
         if (novoFornecedor.getCnpj().equals("")) {
             String resp = "CNPJ é um campo de preenchimento obrigatório.";
@@ -36,7 +48,7 @@ public class FornecedorService {
         String resp = "";
 
         if (f.isEmpty()) {
-            resp = "Fornecedor não encontrado! Verifique o código novamente.";
+            resp = "Fornecedor não encontrado. Verifique o código informado e tente novamente.";
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(resp);
         }
 

@@ -22,14 +22,19 @@ public class FornecedorController {
         return fornecedorService.listarTodos();
     }
 
+    @GetMapping("/read/{codigoFornecedor}")
+    public ResponseEntity<Object> buscar(@PathVariable(value = "codigoFornecedor") Long codigoFornecedor) {
+        return fornecedorService.listarUm(codigoFornecedor);
+    }
+
     @PostMapping("/create")
     public ResponseEntity<Object> cadastrar(@RequestBody FornecedorModel novoFornecedor) {
         return fornecedorService.cadastrarFornecedor(novoFornecedor);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> remover(@PathVariable(value = "id") Long id) {
-        return fornecedorService.removerFornecedor(id);
+    @DeleteMapping("/delete/{codigoFornecedor}")
+    public ResponseEntity<String> remover(@PathVariable(value = "codigoFornecedor") Long codigoFornecedor) {
+        return fornecedorService.removerFornecedor(codigoFornecedor);
     }
     
 }
