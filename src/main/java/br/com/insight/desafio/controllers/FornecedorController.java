@@ -19,27 +19,27 @@ public class FornecedorController {
     @Autowired
     private FornecedorService fornecedorService;
 
-    @GetMapping("/fornecedores")
+    @GetMapping("/api/fornecedores")
     public Iterable<FornecedorModel> listar() {
         return fornecedorService.listarTodos();
     }
 
-    @PostMapping("/create")
+    @PostMapping("/api/create")
     public ResponseEntity<Object> cadastrar(@RequestBody FornecedorModel novoFornecedor) {
         return fornecedorService.cadastrarFornecedor(novoFornecedor);
     }
 
-    @GetMapping("/read/{codigoFornecedor}")
+    @GetMapping("/api/read/{codigoFornecedor}")
     public ResponseEntity<Object> buscar(@PathVariable(value = "codigoFornecedor") Long codigoFornecedor) {
         return fornecedorService.listarUm(codigoFornecedor);
     }
 
-    @PutMapping("/update/{codigoFornecedor}")
+    @PutMapping("/api/update/{codigoFornecedor}")
     public ResponseEntity<Object> atualizar(@PathVariable(value = "codigoFornecedor") Long codigoFornecedor, @RequestBody FornecedorModel fornecedor) {
         return fornecedorService.atualizarDadosFornecedor(codigoFornecedor, fornecedor);
     }
 
-    @DeleteMapping("/delete/{codigoFornecedor}")
+    @DeleteMapping("/api/delete/{codigoFornecedor}")
     public ResponseEntity<String> remover(@PathVariable(value = "codigoFornecedor") Long codigoFornecedor) {
         return fornecedorService.removerFornecedor(codigoFornecedor);
     }
