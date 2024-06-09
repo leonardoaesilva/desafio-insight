@@ -12,10 +12,7 @@ function App() {
   return (
     <div>
       <Form acao={btnCadastrar} />
-      <Tabela />
-      <div>
-        <p>{JSON.stringify(fornecedores)}</p>
-      </div>
+      <Tabela lista={fornecedores} />
     </div>
   );
 }

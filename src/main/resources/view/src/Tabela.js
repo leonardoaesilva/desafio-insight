@@ -1,4 +1,4 @@
-function Tabela() {
+function Tabela({lista}) {
     return(
         <table className='table'>
             <thead>
@@ -10,12 +10,16 @@ function Tabela() {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                {
+                    lista.map((obj, i) => (
+                        <tr key={i}>
+                            <td>{i+1}</td>
+                            <td>{obj.nome}</td>
+                            <td>{obj.cnpj}</td>
+                            <td><button className="btn btn-info">(+)</button></td>
+                        </tr>
+                    ))
+                }
             </tbody>
         </table>
     )
