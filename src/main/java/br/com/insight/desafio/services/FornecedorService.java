@@ -23,7 +23,7 @@ public class FornecedorService {
         if (novoFornecedor.getCnpj().equals("")) {
             String resp = "CNPJ é um campo de preenchimento obrigatório.";
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resp);
-        } else if (novoFornecedor.getRazaoSocial().equals("")) {
+        } else if (novoFornecedor.getNome().equals("")) {
             String resp = "Nome/Razão Social é um campo de preenchimento obrigatório.";
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resp);
         }
@@ -54,7 +54,7 @@ public class FornecedorService {
 
         FornecedorModel fornecedorAux = f.get();
         fornecedorAux.setCnpj(fornecedor.getCnpj());
-        fornecedorAux.setRazaoSocial(fornecedor.getRazaoSocial());
+        fornecedorAux.setNome(fornecedor.getNome());
 
         return ResponseEntity.status(HttpStatus.OK).body(fornecedorRepository.save(fornecedorAux));
     }

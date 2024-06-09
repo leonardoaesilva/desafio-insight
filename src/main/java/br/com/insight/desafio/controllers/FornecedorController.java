@@ -19,7 +19,7 @@ public class FornecedorController {
     @Autowired
     private FornecedorService fornecedorService;
 
-    @GetMapping("/")
+    @GetMapping("/fornecedores")
     public Iterable<FornecedorModel> listar() {
         return fornecedorService.listarTodos();
     }
