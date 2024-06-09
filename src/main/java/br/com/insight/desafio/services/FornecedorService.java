@@ -52,9 +52,11 @@ public class FornecedorService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(resp);
         }
 
-        fornecedor = f.get();
+        FornecedorModel fornecedorAux = f.get();
+        fornecedorAux.setCnpj(fornecedor.getCnpj());
+        fornecedorAux.setRazaoSocial(fornecedor.getRazaoSocial());
 
-        return ResponseEntity.status(HttpStatus.OK).body(fornecedorRepository.save(fornecedor));
+        return ResponseEntity.status(HttpStatus.OK).body(fornecedorRepository.save(fornecedorAux));
     }
 
     public ResponseEntity<String> removerFornecedor(Long codigoFornecedor) {
